@@ -7,7 +7,8 @@ package sistemavenda;
 
 import telas.TelaPrincipal;
 import repositorio.RepositorioDados;
-
+import repositorio.RepositorioClientes;
+import repositorio.RepositorioFuncionarios;
 /**
  *
  * @author Douglas
@@ -18,6 +19,10 @@ public class SistemaVenda {
         System.out.println("Testando main()");
         
         RepositorioDados.inicializandoDados();
+        RepositorioClientes.inicializandoClientes();
+        RepositorioFuncionarios.inicializandoDados();
+      
+        
      
         TelaPrincipal tela = new TelaPrincipal();
         

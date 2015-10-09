@@ -3,15 +3,7 @@ package dados;
 
 
 public class Clientes {
-
-    public static int getContador() {
-        return contador;
-    }
-
-    public static void setContador(int aContador) {
-        contador = aContador;
-    }
-   
+    
     private String nome;
     private String cpf;
     private int codigo;
@@ -24,8 +16,8 @@ public class Clientes {
  private static int contador = 1;
 
     public Clientes(String nome, String cpf, String endereco, String telefone, String email, String sexo) {
-        codigo = contador;
-        contador++;
+       codigo = contador;
+       contador++;
         
         this.nome = nome;
         this.cpf = cpf;
@@ -34,12 +26,15 @@ public class Clientes {
         this.email = email;
         this.sexo = sexo;
         
-     
         
-    
-
-    
     }
+    public void imprimirDados() {
+       
+        System.out.println( toString() );
+   }
+   
+   
+    
 
     @Override
     public String toString() {
@@ -109,10 +104,7 @@ public class Clientes {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
-
+  
    
 
     }

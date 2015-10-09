@@ -5,24 +5,27 @@ import dados.Clientes;
 import java.util.ArrayList;
 
 
+
 public class RepositorioClientes {
 
     private static ArrayList<Clientes> listaClientes = new ArrayList();
     
+    public static void inicializandoClientes(){
     
-   
-    public static void inicializandoDados() {
+         Clientes c1 = new Clientes("HAHA", "HEHE", "HIHI", "HUHU", "HOHO", "HHHH");
+        Clientes c2 = new Clientes("LKS", "CTX", "PQP", "LCS", "MZR", "FDP");
         
-        // criando os objetos diretamente
-
+        listaClientes.add(c1);
+        listaClientes.add(c2);
+       
         
-  
-
+    
     }
     
     
+    
    
-    public static void adicionarProduto(Clientes c) {
+ public static void adicionarClientes(Clientes c) {
         
        
         listaClientes.add(c);
@@ -53,7 +56,7 @@ public class RepositorioClientes {
     }
 
     
-    public static void editarProduto(Clientes clientes) {
+    public static void editarClientes(Clientes clientes) {
         
         for (Clientes c : listaClientes) {
             if (c.getCodigo() == clientes.getCodigo()) {
@@ -61,8 +64,13 @@ public class RepositorioClientes {
                 break;
             }
         }
+    }
         
+         public static String excluirCliente (Clientes excluirCliente){
+           listaClientes.remove(excluirCliente);
+           String ex = "\n Excluido";
+           return ex;
 
     }
     
-} // fim classe
+} 

@@ -128,14 +128,13 @@ public class RepositorioDados {
                 break;
             }
         }
-        
-//        for (int i = 0; i < listaProdutos.length; i++) {
-//            if (listaProdutos[i].getCodigo() == produto.getCodigo()) {
-//                listaProdutos[i] = produto;
-//                break;
-//            }
-//        }
+    }
+        public static String excluirProduto (Produto excluirProduto){
+           listaProdutos.remove(excluirProduto);
+           String e = "\n Excluido";
+           return e;
+              
         
     }
     
-} // fim classe
+}

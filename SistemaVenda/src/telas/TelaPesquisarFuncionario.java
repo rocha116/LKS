@@ -4,21 +4,20 @@
  * and open the template in the editor.
  */
 package telas;
-
-import dados.Produto;
+import repositorio.RepositorioFuncionarios;
 import javax.swing.JOptionPane;
-import repositorio.RepositorioDados;
+import dados.Funcionario;
 
 /**
  *
- * @author Douglas
+ * @author Lucas
  */
-public class TelaPesquisarProduto extends javax.swing.JFrame {
+public class TelaPesquisarFuncionario extends javax.swing.JFrame {
 
     /**
-     * Creates new form TelaPesquisarProduto
+     * Creates new form TelaCadastrarFuncionario
      */
-    public TelaPesquisarProduto() {
+    public TelaPesquisarFuncionario() {
         initComponents();
     }
 
@@ -32,21 +31,15 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel1.setText("Pesquisar Produto");
+        jLabel1.setText("Pesquisar Funcionario");
 
-        jTextField1.setToolTipText("código");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
+        jLabel2.setText("Codigo:");
 
         jButton1.setText("Pesquisar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -55,65 +48,57 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("código:");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(jLabel1)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addComponent(jLabel1)))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
-                .addGap(8, 8, 8))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // realizar a pesquisa pela busca
-        
-        String codigo = jTextField1.getText();
+String codigo = jTextField1.getText();
         
         int cod = Integer.parseInt(codigo);
         
-        Produto produto = RepositorioDados.pesquisarProdutoPeloCodigo(cod);
+        Funcionario funcionario = RepositorioFuncionarios.pesquisarFuncionarioPeloCodigo(cod);
         
-        if (produto != null) {
-//            JOptionPane.showMessageDialog(this, produto);
-            //JOptionPane.showConfirmDialog(this, produto);
-            int opcao = JOptionPane.showConfirmDialog(this,
-                    produto, 
-                    "Editar o produto?" ,
-                    JOptionPane.YES_NO_OPTION);
+        if (funcionario != null) {
+
+            int opcao = JOptionPane.showConfirmDialog(this,funcionario.toString(), "Editar o produto?" ,JOptionPane.YES_NO_OPTION);
             
             
             if (opcao == JOptionPane.YES_OPTION) {
                 System.out.println(" opcao YES ");
                 
-                // chamar a tela de Cadastrar Produto para permitir edicao
-                // passe para a tela o objeto Produto atual
-                TelaCadastrarProduto tela = new TelaCadastrarProduto(produto);
+             
+                TelaCadastrarFuncionario tela = new TelaCadastrarFuncionario(funcionario);
                 tela.setVisible(true);
                 
             } else if(opcao == JOptionPane.NO_OPTION) {
@@ -123,12 +108,8 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Não encontrei o produto com esse código");
         }
-        
+                                 
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -147,20 +128,23 @@ public class TelaPesquisarProduto extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaPesquisarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPesquisarFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaPesquisarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPesquisarFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaPesquisarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPesquisarFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaPesquisarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPesquisarFuncionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaPesquisarProduto().setVisible(true);
+                new TelaPesquisarFuncionario().setVisible(true);
             }
         });
     }
